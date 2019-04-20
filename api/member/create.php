@@ -4,10 +4,13 @@
   header('Access-Control-Allow-Methods: POST');
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-  include_once '../../config/Database.php';
-  include_once '../../models/Member.php';
-  include_once '../../libs/handler/successHandler.php';
-  include_once '../../libs/handler/errorHandler.php';
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/config/Database.php');
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/models/Member.php');
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/libs/handler/successHandler.php');
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/libs/handler/errorHandler.php');
+
+  // Get raw data
+  $data = json_decode(file_get_contents("php://input"));
 
   // Initiate DB & Connect
   $database = new Database();
@@ -15,9 +18,6 @@
 
   // instantiate blog member object
   $member = new Member($db);
-
-  // Get raw data
-  $data = json_decode(file_get_contents("php://input"));
 
   $member->name = $data->name;
   $member->fatherHusbandName = $data->fatherHusbandName;

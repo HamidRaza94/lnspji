@@ -4,7 +4,7 @@
   include_once 'ContactDetail.php';
   include_once 'Transaction.php';
   include_once 'Document.php';
-  include_once '../extra/utils/Helper.php';
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/extra/utils/Helper.php');
   // include_once 'Helper.php';
 
   class Member {
@@ -58,6 +58,15 @@
       $this->personalDetail = new PersonalDetail($db);
       $this->contactDetail = new ContactDetail($db);
       $this->transaction = new Transaction($db);
+    }
+
+    public function get($id) {
+      $query = 'SELECT * FROM ' . $this->table . ' WHERE id = ?';
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindParam(1, $id);
+      $stmt->execute();
+
+      return $stmt;
     }
 
     // Returns Member

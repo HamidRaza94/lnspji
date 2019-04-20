@@ -2,10 +2,10 @@
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
 
-  include_once '../../config/Database.php';
-  include_once '../../models/Member.php';
-  include_once '../../libs/handler/successHandler.php';
-  include_once '../../libs/handler/errorHandler.php';
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/config/Database.php');
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/models/Member.php');
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/libs/handler/successHandler.php');
+  include_once ($_SERVER['DOCUMENT_ROOT'].'/lnspji/libs/handler/errorHandler.php');
 
   $database = new Database();
   $db = $database->connect();
